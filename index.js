@@ -1,25 +1,21 @@
-const { application } = require('express');
 const express = require('express');
 const app = express();
+const BodyParser = require('body-parser');
+const cors = require('cors');
 
+
+app.use(BodyParser.json());
+app.use(BodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use(express.static('public'));
-app.get("/",function(req,res){
-res.send("Main Seite")
+app.set('view engine', 'pug');
+app.get("/login",function(req,res){
+    res.render('index.pug');
 });
-app.get("/users",function(req,res){
-    res.send("./index.html")
- });
-app.post("*",function(req,res){
-    res.send("test")
-    console.log(req);
-});
-app.put("*",function(req,res){
-    res.send("test")
-});
-app.delete("*",function(req,res){
-    res.send("test")
-});
-            
 
-
+app.post("/login",function(req,res){
+res.render('index.pug');
+console.log(req.body.vorname);
+console.log(req.body.nachname);
+});
 app.listen(5000);
