@@ -15,7 +15,25 @@ app.get("/login",function(req,res){
 
 app.post("/login",function(req,res){
 res.render('index.pug');
-console.log(req.body.vorname);
-console.log(req.body.nachname);
+
+
+let Numbers=[1,2,3,4,5,6,7,8,9,10,11];
+let OddNumbers=[];
+let EvenNumbers=[];
+// functions
+function SplitOddAndEven(Numbers) {
+    for (let i = 0; i < Numbers.length; i++) {
+        if (Numbers[i] % 2 == 0) {
+            EvenNumbers.push(Numbers[i]);
+        } else {
+            OddNumbers.push(Numbers[i]);
+        }
+    }
+    console.log(OddNumbers,EvenNumbers);
+    return [OddNumbers, EvenNumbers];
+}
+
+SplitOddAndEven(req.body.nummer);
+
 });
 app.listen(5000);
